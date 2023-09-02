@@ -1,0 +1,9 @@
+Express - To create a server.
+BodyParser - A middle ware to Parse the code into Json.
+Dotenv - To store Global enviroment
+JsonWebToken - To emplement Token Based authentications.
+MongoDB client - For our DataBase.
+Mongoose - A cool wrapper for MongoDB client.
+multer - A third party MiddleWare to upload files.
+nodemon - To auto restart the server
+bcrypt - To encrypt the Password to Hash.
