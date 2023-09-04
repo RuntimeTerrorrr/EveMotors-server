@@ -2,6 +2,7 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { carsModel } from "../models/cars.js";
 import { userModel } from "../models/users.js";
+import multer, { diskStorage } from "multer";
 
 const adminRouter = Router();
 
@@ -28,9 +29,31 @@ const authenticationMiddleware = async (req, res, next) => {
 
 adminRouter.use(authenticationMiddleware);
 
+const storage = diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, process.env.UPLOAD_PATH)
+    },
+    filename: (req, file, cb) => {
+        const filename = file.originalname.toLowerCase().split(' ').join('.')
+        cb(null, filename);
+    }
+});
 
-adminRouter.post('/dashboard', async (req, res) => {
-    const { year, make, model, tagline, topSpeed, power, torque, fuelCapacity, color, bodyType, registeredIn, assembledIn, imgLinkOne, imgLinkTwo, modelLink} = req.body;
+let upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "model/gltf+json"){
+            cb(null, true);
+        }
+        else{
+            cb(null, false)
+            return cb(new Error("Only GLTF extension is allowed!"));
+        }
+    }
+});
+
+adminRouter.post('/dashboard', upload.single , async (req, res) => {
+    const { year, make, model, tagline, topSpeed, power, torque, fuelCapacity, color, bodyType, registeredIn, assembledIn, imgLinkOne, imgLinkTwo, modelLink } = req.body;
     try {
         const newCar = await carsModel.create({
             year,
