@@ -11,6 +11,19 @@ const port = 3000;
 const upload = multer;
 const app = express();
 
+const allowedOrigins = ['https://evemotors-app.vercel.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
+
+app.use(cors(corsOptions));
+
 config();
 connectDB();
 
@@ -18,8 +31,8 @@ app.use(upload.array());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/admin' , adminRouter)
-app.use('/main' , mainRouter)
+app.use('/admin', adminRouter)
+app.use('/main', mainRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening at http://localhost:${port}`);
