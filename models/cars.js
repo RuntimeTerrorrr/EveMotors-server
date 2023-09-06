@@ -1,39 +1,11 @@
 import mongoose, { Schema } from "mongoose"
 
 const CarsSchema = new Schema({
-    year: {
+    makeModel: {
         type: String,
         required: true,
     },
-    make: {
-        type: String,
-        required: true,
-    },
-    model: {
-        type: String,
-        required: true,
-    },
-    topSpeed: {
-        type: Number,
-        required: true,
-    },
-    power: {
-        type: Number,
-        required: true,
-    },
-    torque: {
-        type: Number,
-        required: true,
-    },
-    fuelCapacity: {
-        type: Number,
-        required: true,
-    },
-    color: {
-        type: String,
-        required: true,
-    },
-    bodyType: {
+    variant: {
         type: String,
         required: true,
     },
@@ -45,15 +17,59 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
-    imgLinkOne: {
+    intro: {
         type: String,
         required: true,
     },
-    imgLinkTwo: {
+    engine: {
         type: String,
         required: true,
     },
-    modelLink: {
+    power: {
+        type: String,
+        required: true,
+    },
+    torque: {
+        type: String,
+        required: true,
+    },
+    topSpeed: {
+        type: String,
+        required: true,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    bodyType: {
+        type: String,
+        required: true,
+    },
+    imageLink1: {
+        type: String,
+        required: true,
+    },
+    imageLink2: {
+        type: String,
+        required: true,
+    },
+    imageLink3: {
+        type: String,
+        required: true,
+    },
+    imageLink4: {
+        type: String,
+        required: true,
+    },
+    imageLink5: {
+        type: String,
+        required: true,
+    },
+    modelCDN: {
+        type: String,
+        required: true,
+    },
+    fixedScaleValue: {
         type: String,
         required: true,
     },
