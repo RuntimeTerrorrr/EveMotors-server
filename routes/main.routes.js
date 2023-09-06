@@ -4,12 +4,27 @@ import { hash, compare } from "bcrypt";
 import { userModel } from "../models/users.js";
 import multer from 'multer'
 import jwt from "jsonwebtoken";
+import cors from 'cors';
 
 const mainRouter = Router();
 
 const upload = multer();
 
 mainRouter.use(upload.array());
+
+const allowedOrigins = ['https://evemotors-app.vercel.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
+
+app.use(cors(corsOptions));
+
 
 mainRouter.get('/cars', async (req, res) => {
 
