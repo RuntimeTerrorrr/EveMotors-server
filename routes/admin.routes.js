@@ -42,35 +42,40 @@ const storage = diskStorage({
 let upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        if (file.mimetype == "model/gltf+json"){
+        if (file.mimetype == "model/gltf+json") {
             cb(null, true);
         }
-        else{
+        else {
             cb(null, false)
             return cb(new Error("Only GLTF extension is allowed!"));
         }
     }
 });
 
-adminRouter.post('/dashboard', upload.single , async (req, res) => {
-    const { year, make, model, tagline, topSpeed, power, torque, fuelCapacity, color, bodyType, registeredIn, assembledIn, imgLinkOne, imgLinkTwo, modelLink } = req.body;
+adminRouter.post('/dashboard', upload.single, async (req, res) => {
+    const { makeModel, variant, registeredIn, assembledIn, intro, engine, torque, power, topSpeed, bodyType, category, imageLink1, imageLink2, imageLink3, imageLink4, imageLink5, modelCDN, fixedScaleValue,
+    } = req.body;
+
     try {
         const newCar = await carsModel.create({
-            year,
-            make,
-            model,
-            tagline,
-            topSpeed,
-            power,
-            torque,
-            fuelCapacity,
-            color,
-            bodyType,
+            makeModel,
+            variant,
             registeredIn,
             assembledIn,
-            imgLinkOne,
-            imgLinkTwo,
-            modelLink
+            intro,
+            engine,
+            torque,
+            power,
+            topSpeed,
+            bodyType,
+            category,
+            imageLink1,
+            imageLink2,
+            imageLink3,
+            imageLink4,
+            imageLink5,
+            modelCDN,
+            fixedScaleValue,
         });
 
         res.status(201).json({ message: "The Car has been added.", newCar });
