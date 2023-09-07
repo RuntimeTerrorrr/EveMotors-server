@@ -85,6 +85,23 @@ adminRouter.post('/dashboard', upload.single, async (req, res) => {
     }
 });
 
+adminRouter.delete('/cars/:carId', async (req, res) => {
+    try {
+      const carId = req.params.carId;
+  
+      const deletedCar = await carsModel.findByIdAndDelete({ _id: carId });
+  
+      if (!deletedCar) {
+        return res.status(404).json({ message: 'Car not found' });
+      }
+  
+      return res.status(200).json({ message: 'Car deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+
 
 export default adminRouter;
 
