@@ -61,15 +61,15 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
-    imageLink5: {
-        type: String,
-        required: true,
-    },
     modelCDN: {
         type: String,
         required: true,
     },
     fixedScaleValue: {
+        type: String,
+        required: true,
+    },
+     fixedTargetValue: {
         type: String,
         required: true,
     },
