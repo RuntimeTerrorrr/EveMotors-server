@@ -25,7 +25,7 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
-    displacement:{
+    displacement: {
         type: String,
         required: true,
     },
@@ -77,7 +77,7 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
-     fixedTargetValue: {
+    fixedTargetValue: {
         type: String,
         required: true,
     },

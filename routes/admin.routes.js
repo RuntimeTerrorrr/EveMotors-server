@@ -53,7 +53,7 @@ let upload = multer({
 });
 
 adminRouter.post('/dashboard', upload.single, async (req, res) => {
-    const { makeModel, variant, registeredIn, assembledIn, intro, engine, torque, power, topSpeed, bodyType, category, imageLink1, imageLink2, imageLink3, imageLink4, imageLink5, modelCDN, fixedScaleValue,
+    const { makeModel, variant, registeredIn, assembledIn, intro, engine, transmission, displacement, torque, power, topSpeed, bodyType, category, imageLink1, imageLink2, imageLink3, imageLink4, modelCDN, fixedScaleValue,
     } = req.body;
 
     try {
@@ -64,6 +64,8 @@ adminRouter.post('/dashboard', upload.single, async (req, res) => {
             assembledIn,
             intro,
             engine,
+            transmission,
+            displacement,
             torque,
             power,
             topSpeed,
@@ -73,9 +75,9 @@ adminRouter.post('/dashboard', upload.single, async (req, res) => {
             imageLink2,
             imageLink3,
             imageLink4,
-            imageLink5,
             modelCDN,
             fixedScaleValue,
+            fixedTargetValue,
         });
 
         res.status(201).json({ message: "The Car has been added.", newCar });
