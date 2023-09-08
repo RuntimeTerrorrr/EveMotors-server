@@ -82,7 +82,7 @@ adminRouter.post('/dashboard', upload.single, async (req, res) => {
         res.status(201).json({ message: "The Car has been added.", newCar });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: err });
+        res.status(500).json(err);
     }
 });
 
