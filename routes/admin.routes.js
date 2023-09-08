@@ -116,11 +116,10 @@ adminRouter.post('/dashboard', upload.single, async (req, res) => {
             fixedScaleValue,
             fixedTargetValue, 
         });
-
         res.status(201).json({ message: "The Car has been added.", newCar });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "An error occurred while adding the car." });
+        res.status(500).json({ message: err });
     }
 });
 
