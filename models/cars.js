@@ -25,6 +25,14 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
+    displacement:{
+        type: String,
+        required: true,
+    },
+    transmission: {
+        type: String,
+        required: true,
+    },
     power: {
         type: String,
         required: true,
