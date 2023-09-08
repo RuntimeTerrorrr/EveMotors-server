@@ -102,6 +102,4 @@ adminRouter.delete('/cars/:carId', async (req, res) => {
     }
   });
 
-
 export default adminRouter;
-
