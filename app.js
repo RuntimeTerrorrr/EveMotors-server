@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 config();
 connectDB();
 
-app.use(upload.array());
+
 app.use(bodyParser.json());
 app.use(cors());
 
