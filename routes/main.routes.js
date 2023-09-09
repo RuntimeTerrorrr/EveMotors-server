@@ -4,6 +4,9 @@ import { hash, compare } from "bcrypt";
 import { userModel } from "../models/users.js";
 import jwt from "jsonwebtoken";
 const mainRouter = Router();
+import multer from 'multer';
+
+const upload = multer({ dest: 'uploads/' }); 
 
 mainRouter.get('/cars', async (req, res) => {
 
@@ -82,6 +85,15 @@ mainRouter.post('/register', async (req, res) => {
         res.end();
     }
 });
+
+mainRouter.post( '/upload', upload.single('image'), (req, res)=>{
+
+    if(!req.file){
+        return res.status(400).json({ error: "no file uploaded"});
+    }
+
+    return res.status(200).json({ message: "file uploaded successfully "});
+} )
 
 mainRouter.post('/login', async (req, res) => {
     const { email, password } = req.body;
