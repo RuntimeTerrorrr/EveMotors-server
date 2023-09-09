@@ -28,16 +28,22 @@ mainRouter.get('/cars', async (req, res) => {
     }
 });
 
-app.get('/cars/:carId', async (req, res) => {
+mainRouter.get('/cars/:carId', async (req, res) => {
     try {
-      const carId = req.params.carId;
-      const carData = await fetchDataById({_id: carId});
-      res.json(carData);
+        const carId = req.params.carId;
+        const carData = await carsModel.findById(carId);
+
+        if (carData) {
+            res.json(carData);
+        } else {
+            res.status(404).json({ message: 'Car not found' });
+        }
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  });
+});
+
 
 mainRouter.get('/users', async (req, res) => {
     try {
