@@ -11,7 +11,7 @@ const app = express();
 
 const upload = multer;
 
-const allowedOrigins = [''];
+const allowedOrigins = ['http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
