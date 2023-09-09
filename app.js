@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-    origin: [ 'https://www.eve-motors-app.vercel.app/']
+    origin: [ 'https://eve-motors-app.vercel.app']
 }));
 
 config();
