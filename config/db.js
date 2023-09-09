@@ -6,7 +6,10 @@ export const connectDB = async () => {
     try {
 
         const connection = await mongoose.connect(process.env.DATABASE_URL, {
-            dbName: process.env.DATABASE_NAME
+            dbName: process.env.DATABASE_NAME,
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            debug: true,
         });
 
         console.log("DataBase has been connected", connection.connection.host);
