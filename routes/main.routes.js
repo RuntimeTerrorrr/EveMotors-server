@@ -3,9 +3,21 @@ import { carsModel } from "../models/cars.js";
 import { hash, compare } from "bcrypt";
 import { userModel } from "../models/users.js";
 import jwt from "jsonwebtoken";
-
-
+import cors from 'cors'
 const mainRouter = Router();
+
+const allowedOrigins = ['https://evemotors-app.vercel.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
+
+mainRouter.use(cors(corsOptions));
 
 mainRouter.get('/cars', async (req, res) => {
 
