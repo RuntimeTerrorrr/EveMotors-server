@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { carsModel } from "../models/cars.js";
 import { userModel } from "../models/users.js";
 import multer from "multer";
-
 const adminRouter = Router();
 
 const authenticationMiddleware = async (req, res, next) => {
@@ -29,7 +28,7 @@ const authenticationMiddleware = async (req, res, next) => {
 
 adminRouter.use(authenticationMiddleware);
 
-const upload = multer();
+const upload = multer({ dest: 'uploads/' });
 adminRouter.use(upload.array());
 
 adminRouter.post('/dashboard', upload.single(), async (req, res) => {
