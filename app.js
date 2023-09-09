@@ -24,7 +24,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 config();
 connectDB();
-app.use(upload.array());
 
 
 app.use(bodyParser.json());
