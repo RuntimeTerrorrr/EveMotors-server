@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { carsModel } from "../models/cars.js";
 import { userModel } from "../models/users.js";
 import multer from "multer";
+import path from "path";
 const adminRouter = Router();
 
 const authenticationMiddleware = async (req, res, next) => {
@@ -28,7 +29,16 @@ const authenticationMiddleware = async (req, res, next) => {
 
 adminRouter.use(authenticationMiddleware);
 
-const storage = multer.memoryStorage();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'uploads/');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    },
+});
+
 const upload = multer({ storage: storage });
 
 adminRouter.post('/dashboard', upload.single(), async (req, res) => {
@@ -86,12 +96,15 @@ adminRouter.post('/dashboard', upload.single(), async (req, res) => {
 });
 
 adminRouter.post('/upload', upload.single('image'), (req, res) => {
-
     if (!req.file) {
-        return res.status(400).json({ error: "no file uploaded" });
+        return res.status(400).json({ error: "No file uploaded" });
     }
 
-    return res.status(200).json({ message: "file uploaded successfully " });
+
+    const uploadedFilePath = req.file.path;
+
+
+    return res.status(200).json({ message: "File uploaded and saved successfully", uploadedFilePath });
 });
 
 
