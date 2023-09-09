@@ -2,7 +2,7 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { carsModel } from "../models/cars.js";
 import { userModel } from "../models/users.js";
-import multer  from "multer";
+import multer from "multer";
 
 const adminRouter = Router();
 
@@ -32,7 +32,7 @@ adminRouter.use(authenticationMiddleware);
 const upload = multer();
 adminRouter.use(upload.array());
 
-adminRouter.post('/dashboard',upload.single(), async (req, res) => {
+adminRouter.post('/dashboard', upload.single(), async (req, res) => {
     const {
         makeModel,
         variant,
@@ -53,7 +53,7 @@ adminRouter.post('/dashboard',upload.single(), async (req, res) => {
         imageLink4,
         modelCDN,
         fixedScaleValue,
-        fixedTargetValue, 
+        fixedTargetValue,
     } = req.body;
 
     try {
@@ -77,12 +77,12 @@ adminRouter.post('/dashboard',upload.single(), async (req, res) => {
             imageLink4,
             modelCDN,
             fixedScaleValue,
-            fixedTargetValue, 
+            fixedTargetValue,
         });
         res.status(201).json({ message: "The Car has been added.", newCar });
     } catch (err) {
         console.error(err);
-        res.status(500).json({message: "Could not add the car."});
+        res.status(500).json({ message: "Could not add the car." });
     }
 });
 
