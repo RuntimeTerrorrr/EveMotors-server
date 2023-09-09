@@ -7,9 +7,9 @@ import { connectDB } from './config/db.js';
 import multer from 'multer';
 import cors from 'cors';
 const port = 3000;
+const app = express();
 
 const upload = multer;
-const app = express();
 
 const allowedOrigins = ['https://evemotors-app.vercel.app'];
 const corsOptions = {
@@ -23,6 +23,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 config();
 connectDB();
