@@ -28,7 +28,7 @@ const authenticationMiddleware = async (req, res, next) => {
 
 adminRouter.use(authenticationMiddleware);
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '../uploads' });
 
 adminRouter.post('/dashboard', upload.single(), async (req, res) => {
     const {

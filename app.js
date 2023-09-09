@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import adminRouter from './routes/admin.routes.js';
 import mainRouter from './routes/main.routes.js';
 import { connectDB } from './config/db.js';
-import multer from 'multer';
 import cors from 'cors';
 const port = 3000;
 const app = express();
