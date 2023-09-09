@@ -8,7 +8,7 @@ import cors from 'cors';
 const port = 3000;
 const app = express();
 
-const allowedOrigins = ['https://evemotors-app.vercel.app'];
+const allowedOrigins = ['https://eve-motors-app.vercel.app'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
