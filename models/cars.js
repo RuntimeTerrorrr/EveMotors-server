@@ -69,6 +69,10 @@ const CarsSchema = new Schema({
         type: String,
         required: true,
     },
+    coverImageUrl: {
+        type: String,
+        required: true,
+    },
     modelCDN: {
         type: String,
         required: true,
