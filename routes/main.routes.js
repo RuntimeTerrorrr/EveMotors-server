@@ -3,7 +3,6 @@ import { carsModel } from "../models/cars.js";
 import { hash, compare } from "bcrypt";
 import { userModel } from "../models/users.js";
 import jwt from "jsonwebtoken";
-import cors from 'cors'
 const mainRouter = Router();
 
 mainRouter.get('/cars', async (req, res) => {
