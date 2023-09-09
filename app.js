@@ -9,9 +9,7 @@ import cors from 'cors';
 const port = 3000;
 const app = express();
 
-const upload = multer;
-
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['https://evemotors-app.vercel.app', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
