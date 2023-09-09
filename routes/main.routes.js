@@ -89,14 +89,13 @@ mainRouter.post('/login', async (req, res) => {
         const user = await userModel.findOne({ email });
 
         if (!user) {
-            res.status(401).json({ message: "Invalid Email" })
-            res.end();
+            return res.status(401).json({ message: "Invalid Email" }); 
         }
+
         const isPasswordValid = await compare(password, user.password);
 
         if (!isPasswordValid) {
-            res.status(401).json({ message: "Invalid Password" })
-            res.end();
+            return res.status(401).json({ message: "Invalid Password" }); 
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
@@ -104,12 +103,11 @@ mainRouter.post('/login', async (req, res) => {
 
         res.status(200).json({ token });
 
-    }
-
-    catch (err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 export default mainRouter;
