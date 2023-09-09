@@ -32,7 +32,7 @@ adminRouter.use(authenticationMiddleware);
 const upload = multer();
 adminRouter.use(upload.array());
 
-adminRouter.post('/dashboard', async (req, res) => {
+adminRouter.post('/dashboard',upload.single(), async (req, res) => {
     const {
         makeModel,
         variant,
