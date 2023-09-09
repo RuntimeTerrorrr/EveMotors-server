@@ -86,6 +86,15 @@ adminRouter.post('/dashboard', upload.single(), async (req, res) => {
     }
 });
 
+adminRouter.post('/upload', upload.single('image'), (req, res) => {
+
+    if (!req.file) {
+        return res.status(400).json({ error: "no file uploaded" });
+    }
+
+    return res.status(200).json({ message: "file uploaded successfully " });
+});
+
 
 adminRouter.delete('/cars/:carId', async (req, res) => {
     try {
