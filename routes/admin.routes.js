@@ -109,22 +109,16 @@ adminRouter.post('/upload', upload.single('image'), (req, res) => {
     return res.status(200).json({ message: "File uploaded and saved successfully", uploadedFilePath });
 });
 
-
-adminRouter.delete('/cars/:carId', async (req, res) => {
-    try {
-        const carId = req.params.carId;
-
-        const deletedCar = await carsModel.findByIdAndDelete({ _id: carId });
-
-        if (!deletedCar) {
-            return res.status(404).json({ message: 'Car not found' });
-        }
-
-        return res.status(200).json({ message: 'Car deleted successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
+adminRouter.delete('/api/cars/:carId', (req, res) => {
+    const carId = parseInt(req.params.carId);
+    const index = cars.findIndex((car) => car.id === carId);
+  
+    if (index === -1) {
+      res.status(404).json({ message: 'Car not found' });
+    } else {
+      cars.splice(index, 1);
+      res.json({ message: 'Car deleted successfully' });
     }
-});
+  });
 
 export default adminRouter;

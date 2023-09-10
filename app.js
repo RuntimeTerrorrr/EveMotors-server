@@ -9,6 +9,9 @@ import multer from 'multer';
 
 const port = process.env.PORT || 3000;
 const app = express();
+app.use(bodyParser.json());
+
+
 const upload = multer();
 
 app.use(upload.array());
@@ -19,7 +22,6 @@ app.use(cors({
 config();
 connectDB();
 
-app.use(bodyParser.json());
 
 app.use('/admin', adminRouter)
 app.use('/main', mainRouter)
