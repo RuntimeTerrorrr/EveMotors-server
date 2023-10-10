@@ -16,7 +16,7 @@ const upload = multer();
 
 app.use(upload.array());
 app.use(cors({
-    origin: [ '*']
+    origin: [ 'http://localhost:3000']
 }));
 
 config();
