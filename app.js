@@ -16,7 +16,7 @@ const upload = multer();
 
 app.use(upload.array());
 app.use(cors({
-    origin: [ 'https://eve-motors-app.vercel.app/']
+    origin: [ '*']
 }));
 
 config();
